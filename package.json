@@ -1,0 +1,21 @@
+{
+  "name": "ScratchX Example",
+  "version": "1.0.0",
+  "description": "Using TypeScript i.s.o. JavaScript",
+  "main": "src/iife.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "tslint src/**/*.ts*",
+    "lint_verbose": "tslint src/**/*.ts* -t verbose",
+    "lint_autofix": "tslint --fix src/*.ts -t verbose"
+  },
+  "author": "Ton Biegstraaten",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^2.2.2"
+  },
+  "dependencies": {
+    "@types/node": "^9.4.6",
+    "microsoft": "0.0.0"
+  }
+}

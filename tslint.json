@@ -1,0 +1,13 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended",
+        "tslint-eslint-rules",
+        "tslint-react"
+    ],
+    "jsRules": {},
+    "rules": {
+        "ter-indent": [true, 2]
+    },
+    "rulesDirectory": []
+}

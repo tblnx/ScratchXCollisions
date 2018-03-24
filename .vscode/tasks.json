@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "watch",
+            "command": "tsc",
+            "args": [
+                "-p",
+                "tsconfig.json",
+                "--sourceMap",
+                "--outDir",
+                "lib"
+            ],
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "isBackground": true
+        }
+    ]
+}
