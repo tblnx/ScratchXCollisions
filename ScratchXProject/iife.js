@@ -14,7 +14,7 @@ var mathExt;
     }
     mathExt._getStatus = _getStatus;
     function power(base, exponent) {
-        return Math.pow(base, exponent) * 2;
+        return Math.pow(base, exponent);
     }
     mathExt.power = power;
     function atan2(x1, x2, y1, y2) {
