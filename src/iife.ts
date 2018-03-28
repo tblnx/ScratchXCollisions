@@ -12,7 +12,7 @@ namespace mathExt {
   }
 
   export function power(base: number, exponent: number) {
-    return Math.pow(base, exponent);
+    return Math.pow(base, exponent)*2;
   }
 
   export function atan2(x1: number, x2: number, y1: number, y2: number) {

@@ -14,7 +14,7 @@
         "src/**/*"
     ],
     "exclude": [
-        "lib",
+        "ScratchProject",
         "node_modules/**/*"
     ],
     "typeAcquisition": {

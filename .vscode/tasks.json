@@ -9,7 +9,7 @@
                 "tsconfig.json",
                 "--sourceMap",
                 "--outDir",
-                "lib"
+                "ScratchProject"
             ],
             "type": "shell",
             "group": {
