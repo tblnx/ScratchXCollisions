@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "target": "es6",
-        "module": "commonjs",
         "sourceMap": true,
         "allowJs": true,
         "checkJs": true,
@@ -14,9 +13,11 @@
         "src/**/*"
     ],
     "exclude": [
-        "ScratchProject",
         "node_modules/**/*"
     ],
     "typeAcquisition": {
+        "include": [
+         "jquery", "node"
+     ]
     }
 }

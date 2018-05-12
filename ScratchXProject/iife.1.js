@@ -1,4 +1,3 @@
-//import { stringify } from "querystring";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -220,4 +219,4 @@ var pr;
       }
       */
 })(pr || (pr = {}));
-//# sourceMappingURL=iife.js.map
+//# sourceMappingURL=iife.1.js.map

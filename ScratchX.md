@@ -16,10 +16,10 @@ De volgende eisen/wensen kan je opstellen:
 - Je moet de snelheid van iedere bol weten
 - Je moet de massa van iedere bol weten
 
-## ScratchX
+Hieronder volgen 3 links, de eerste als je alleen een extensie wilt laden, in een kaal project dus. <http://scratchx.org/?url=https://tblnx.github.io/ScratchX/iife.js>
 
-## Hoe maak je een `.sbx` bestand?
+Deze link gebruik je om een bestaande extensie te laden in een bestaand project om het project verder te ontwikkelen. De extensie klan je alleen aanpassen via `github`.
+<https://tblnx.github.io/ScratchX/iife.js>
 
-## Hoe koppel je `JavaScript` aan `ScratchX`?
-
-### Het gebruik van `TypeScript` ipv `JavaScript`
+De laatste link wijst naar een bestaande `.sbx file` op `github`.
+<http://scratchx.org/?url=https://tblnx.github.io/ScratchX/tbs.sbx>
