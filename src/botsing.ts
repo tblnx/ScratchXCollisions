@@ -5,7 +5,14 @@
 // tslint:disable:object-literal-sort-keys
 namespace collisions {
 
-  export function _shutdown() { }
+  export function _shutdown() {
+    console.log("shutdown");
+  }
+
+  export function _stop() {
+    console.log("stop");
+    exitApp();
+  }
 
   // Status reporting code
   // Use this to report missing hardware, plugin or unsupported browser
@@ -54,11 +61,29 @@ namespace collisions {
     return id;
   }
 
+  function doit() {
+    console.log("Do it");
+    for (let i = 0; i < sprites.length; i++) {
+      newPos(i);
+    }
+  }
+
+  let timerId: NodeJS.Timer = null;
+
   export function initApp(xs: number, ys: number) {
     console.log(`Init`);
     xSize = xs;
     ySize = ys;
     sprites.length = 0;
+    timerId = setInterval(doit, 1000);
+  }
+
+  export function exitApp() {
+    console.log(`Exit`);
+    sprites.length = 0;
+    if (timerId != null) {
+      clearInterval(timerId);
+    }
   }
 
   // id, x-pos, y-pos, x-vel, x-vel, radius, mass
@@ -69,13 +94,13 @@ namespace collisions {
     xvel: number,
     yvel: number,
     radius: number,
-    mass: number) {
+    weight: number) {
     sprites[sprite].xPos = xpos;
     sprites[sprite].yPos = ypos;
     sprites[sprite].xVel = xvel;
     sprites[sprite].yVel = yvel;
     sprites[sprite].radius = radius;
-    sprites[sprite].mass = mass;
+    sprites[sprite].weight = weight;
   }
 
   export function setPos(
@@ -86,18 +111,56 @@ namespace collisions {
     sprites[sprite].yPos = ypos;
   }
 
-  export function setSpeed(
+  export function setXSpeed(
     sprite: number,
-    xspeed: number,
-    yspeed: number) {
-    console.log("Set speed");
+    xspeed: number) {
     sprites[sprite].xVel = xspeed;
-    sprites[sprite].yVel = yspeed;
     console.log(`sprite: ${sprite}, speed: ${xspeed}:${sprites[sprite].xVel}`);
+  }
+
+  export function setWeight(
+    sprite: number,
+    weight: number) {
+    sprites[sprite].weight = weight;
+    console.log(`sprite: ${sprite}, weight: ${weight}:${sprites[sprite].weight}`);
+  }
+
+  export function setRadius(
+    sprite: number,
+    radius: number) {
+    sprites[sprite].radius = radius;
+    console.log(`sprite: ${sprite}, radius: ${radius}:${sprites[sprite].radius}`);
+  }
+
+  export function setYSpeed(
+    sprite: number,
+    yspeed: number) {
+    sprites[sprite].yVel = yspeed;
+    console.log(`sprite: ${sprite}, speed: ${yspeed}:${sprites[sprite].yVel}`);
   }
 
   export function getXpos(sprite: number): number {
     return sprites[sprite].xPos;
+  }
+/*
+ * Hoe test ik botsingen?
+ * Hier bereken ik het per sprite, maar het moet globaal
+ * Eigenlijk zou je per tijdseenheid de nieuwe posities moeten berekenen
+ * en dan kijken of er gebotst wordt waarna een en ander wordt aangepast
+ * Dus alles hooguit een vast aantal keren per seconde, dus een framerate?
+ * Hoe is de huidige?
+ */
+  export function newPos(sprite: number) {
+    const sp = sprites[sprite];
+    sp.xPos += sp.xVel;
+    sp.yPos += sp.yVel;
+    if (sp.xPos > xSize || sp.xPos < -xSize) {
+      sp.xVel = -sp.xVel;
+    }
+    if (sp.yPos > ySize || sp.yPos < -ySize) {
+      sp.yVel = -sp.yVel;
+    }
+
   }
 
   export function getYpos(sprite: number): number {
@@ -169,13 +232,18 @@ namespace collisions {
   const descriptor = {
     blocks: [
       // Block type, block name, function name, param1 default value, param2 default value
-      ["", "initApp %n %n", "initApp"],
+      ["",  "initApp %n %n", "initApp"],
+      ["",  "exitApp", "exitApp"],
       ["r", "spriteInit", "spriteInit"],
-      ["", "set all data %n %n %n %n %n %n %n", "setData"],
-      ["", "set position %n %n %n", "setPos"],
-      ["", "set speed %n %n %n", "setSpeed"],
-      ["", "toon", "toon"],
-      ["r", "get x pos %n", "getXpos"],
+      ["",  "set all data %n %n %n %n %n %n %n", "setData"],
+      ["",  "set position %n %n %n", "setPos"],
+      ["",  "new position %n", "newPos"],
+      ["",  "set radius %n %n", "setRadius"],
+      ["",  "set weight %n %n", "setWeight"],
+      ["",  "set x speed %n %n", "setXSpeed"],
+      ["",  "set y speed %n %n", "setYSpeed"],
+      ["",  "toon", "toon"],
+      ["r", "get x pos %n", "getXpos"], 
       ["r", "get y pos %n", "getYpos"],
       ["r", "get x speed %n", "getXspeed"],
       ["r", "get y speed %n", "getYspeed"],
@@ -226,11 +294,11 @@ class Sprite {
     this.lyVel = value;
   }
 
-  get mass() {
+  get weight() {
     return this.lMass;
   }
 
-  set mass(value: number) {
+  set weight(value: number) {
     this.lMass = value;
   }
 
